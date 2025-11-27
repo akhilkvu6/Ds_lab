@@ -2,7 +2,8 @@
 
 #define MAX 100
 
-int main() {
+int main() 
+{
     int n, start;
     int graph[MAX][MAX];
     int visited[MAX] = {0};
@@ -15,8 +16,12 @@ int main() {
     // Step 2: Input adjacency matrix
     printf("Enter adjacency matrix (use 0 for no edge):\n");
     for (int i = 0; i < n; i++)
+    {
         for (int j = 0; j < n; j++)
+        {
             scanf("%d", &graph[i][j]);
+        }
+    }
 
     // Step 3: Input starting vertex
     printf("Enter starting vertex (0 to %d): ", n-1);
@@ -26,17 +31,23 @@ int main() {
     printf("Prim's MST edges:\n");
 
     // Step 4: Build MST
-    for (int count = 0; count < n - 1; count++) {
+    for (int c = 0; c < n - 1; c++) 
+    {
         int u = -1, v = -1;
         int found = 0; // Flag to initialize min with first valid edge
         int min;
 
         // Find minimum edge connecting visited to unvisited vertex
-        for (int i = 0; i < n; i++) {
-            if (visited[i]) {
-                for (int j = 0; j < n; j++) {
-                    if (!visited[j] && graph[i][j]) {
-                        if (!found || graph[i][j] < min) {
+        for (int i = 0; i < n; i++) 
+        {
+            if (visited[i]) 
+            {
+                for (int j = 0; j < n; j++) 
+                {
+                    if (!visited[j] && graph[i][j]) 
+                    {
+                        if (!found || graph[i][j] < min) 
+                        {
                             min = graph[i][j];
                             u = i;
                             v = j;
