@@ -7,7 +7,7 @@ int main()
     int graph[MAX][MAX] = {0};
     int indegree[MAX] = {0};
     int queue[MAX];
-    int front = -1, rear = -1;
+    int front = 0, rear = -1;
     int topoOrder[MAX];
     int count = 0;
 
@@ -26,10 +26,10 @@ int main()
     }
 
     // Step 1: Compute indegree
-    for (int v = 1; v <= n; v++)
+    for (int v = 0; v < n; v++)
     {
         indegree[v] = 0;
-        for (int u = 1; u <= n; u++)
+        for (int u = 0; u < n; u++)
         {
             if (graph[u][v] == 1)
                 indegree[v]++;
@@ -37,45 +37,32 @@ int main()
     }
 
     // Step 2: Push indegree 0 vertices to queue
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
         if (indegree[i] == 0)
-        {
-            if (front == -1)
-                front = 0;
             queue[++rear] = i;
-        }
     }
 
     // Step 3: Kahn's Algorithm
-    while (front != -1 && front <= rear)
+    while (front <= rear)
     {
         int u = queue[front++];
         topoOrder[count++] = u;
 
-        if (front > rear)
-            front = rear = -1;
-
-        for (int v = 1; v <= n; v++)
+        for (int v = 0; v < n; v++)
         {
             if (graph[u][v] == 1)
             {
                 indegree[v]--;
                 if (indegree[v] == 0)
-                {
-                    if (front == -1)
-                        front = 0;
                     queue[++rear] = v;
-                }
             }
         }
     }
 
-    // Step 4: Cycle detection
+    // Cycle detection
     if (count != n)
-    {
         printf("\nCycle detected! Topological sorting not possible.\n");
-    }
     else
     {
         printf("\nTopological Order: ");

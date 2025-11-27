@@ -31,7 +31,8 @@ int pop()
     }
 }
 
-void DFS(int adjMatrix[MAX][MAX], int n, int start) {
+void DFS(int adjMatrix[MAX][MAX], int n, int start) 
+{
     int visited[MAX] = {0};
 
     push(start);
@@ -39,13 +40,16 @@ void DFS(int adjMatrix[MAX][MAX], int n, int start) {
 
     printf("DFS traversal starting from node %d: ", start);
 
-    while (top != -1) { 
+    while (top != -1) 
+    { 
         int node = pop();
         printf("%d ", node);
 
         
-        for (int i = 0; i < n; i++) {
-            if (adjMatrix[node][i] == 1 && visited[i]==0) {
+        for (int i = 0; i < n; i++) 
+        {
+            if (adjMatrix[node][i] == 1 && visited[i]==0) 
+            {
                 push(i);
                 visited[i] = 1;
             
@@ -65,8 +69,12 @@ int main()
 
     printf("Enter adjacency matrix:\n");
     for (int i = 0; i < n; i++)
+    {
         for (int j = 0; j < n; j++)
+        {    
             scanf("%d", &adjMatrix[i][j]);
+        }
+    }
 
     printf("Enter starting node: ");
     scanf("%d", &start);
