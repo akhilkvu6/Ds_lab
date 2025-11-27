@@ -1,8 +1,9 @@
 #include<stdio.h>
-#include<conio.h>
+
 #define MAX 100
-int top=-1;
-int stack[MAX];
+int top=-1; // Global top index
+int stack[MAX]; // Global stack array
+
 void push(int n)
 {
     if(top>=MAX-1)
@@ -15,9 +16,8 @@ void push(int n)
         stack[++top]=n;
 
     }
-
-
 }
+
 int pop()
 {
     if(top<0)
@@ -28,13 +28,9 @@ int pop()
     else
     {
         return stack[top--];
-
     }
 }
-int isEmpty()
-{
-        return top==-1;
-}
+
 void DFS(int adjMatrix[MAX][MAX], int n, int start) {
     int visited[MAX] = {0};
 
@@ -43,7 +39,7 @@ void DFS(int adjMatrix[MAX][MAX], int n, int start) {
 
     printf("DFS traversal starting from node %d: ", start);
 
-    while (!isEmpty()) {
+    while (top != -1) { 
         int node = pop();
         printf("%d ", node);
 
